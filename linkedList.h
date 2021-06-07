@@ -27,9 +27,6 @@ class LinkedList{
         int retMin();
         int nodeAtIndex(int);
         int search(int);
-        Node *rethead(){
-            return head;
-        }
 
 };
 
