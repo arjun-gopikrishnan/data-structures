@@ -4,13 +4,10 @@
 using namespace std;
 int main(){
     CircularList* list = new CircularList();
-    int n,temp;
-    cin>>n;
 
-    for(int i=0;i<n;i++){
-        cin>>temp;
-        list->insert(temp);
+    for(int i=0;i<5;i++){
+        list->insert((5-i));
     }
-    list->display();
 
+    list->display();
 }
