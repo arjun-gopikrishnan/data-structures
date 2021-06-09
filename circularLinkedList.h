@@ -16,10 +16,12 @@ class CircularList{
             length=0;
         }
         void display();
+        int index(int);
         void insert(int);
         void insert(int,int);
         void remove();
         void remove(int);
+        void reverse();
         int size(){return length;}
 
 };
@@ -35,6 +37,19 @@ inline void CircularList::display(){
             tracker=tracker->next;
         }while(tracker!=head);
     }
+}
+
+inline int CircularList::index(int index){
+    if(head==NULL){
+        throw "UNDERFLOW";
+    }
+    if(index>length-1)
+        throw "EXCEEDS LENGTH";
+    circNode* newNode = new circNode();
+    newNode=head;
+    for(int i=0;i<index;i++)newNode=newNode->next;
+    return newNode->data;
+
 }
 
 inline void CircularList::insert(int value){
@@ -109,4 +124,23 @@ inline void CircularList::remove(int index){
         prev->next=temp->next;
         delete temp;
     }
+}
+
+inline void CircularList::reverse(){
+    if(head==NULL)
+        return;
+    circNode* prev = new circNode();
+    circNode* current = new circNode();
+    circNode* next = new circNode(); 
+    current=head,next=prev=NULL;
+
+    do{
+        next=current->next;
+        current->next=prev;
+        prev=current;
+        current=next;
+    }while(current!=head);
+
+    head->next=prev;
+    head=prev;
 }

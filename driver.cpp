@@ -8,6 +8,7 @@ int main(){
     for(int i=0;i<5;i++){
         list->insert((5-i));
     }
-
+    
+    list->reverse();
     list->display();
 }
