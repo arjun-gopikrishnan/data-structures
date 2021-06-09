@@ -1,10 +1,9 @@
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+#include "Node.h"
 #include<iostream>
 using namespace std;
 
-struct Node{
-    int data;
-    Node *next;
-};
 
 class LinkedList{
     private: Node* head;
@@ -253,3 +252,4 @@ inline int LinkedList::search(int key){
      return count;
 }
 
+#endif
