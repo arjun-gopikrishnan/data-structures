@@ -6,12 +6,18 @@ using namespace std;
 
 
 class LinkedList{
-    private: Node* head;
+    private: 
+        Node* head;
+        LinkedList* mergeSort(Node*,Node*);
+        Node * Head();
+        Node*  Tail();
+
     public:
         LinkedList() {
         head = NULL;
         }
         ~LinkedList() {}
+        LinkedList* merge(LinkedList*,LinkedList*);
         void addNodeHead(int);
         bool insertAt(int,int);
         void addNodeBack(int);
@@ -26,6 +32,10 @@ class LinkedList{
         int retMin();
         int nodeAtIndex(int);
         int search(int);
+        void concatenate(LinkedList*);
+        void mergeSort();
+        Node* midNode();
+        Node* midNode(Node*, Node *);
 
 };
 
@@ -250,6 +260,135 @@ inline int LinkedList::search(int key){
         return -1;
     else
      return count;
+}
+
+inline void LinkedList::concatenate(LinkedList *list_2){
+    if(head==NULL)
+        head=list_2->head;
+    else{
+        Node* tracker = new Node();
+        for(tracker=head;tracker->next!=NULL;tracker=tracker->next);
+        tracker->next=list_2->head;
+    }
+ 
+}
+
+inline Node* LinkedList::midNode(){
+    if(head==NULL)
+        return NULL;
+    Node *tracker = new Node();
+    Node *trackerFast = new Node();
+    tracker=trackerFast=head;
+    while(trackerFast->next!=NULL&&trackerFast->next->next!=NULL){
+        tracker=tracker->next;
+        trackerFast=trackerFast->next->next;
+    }
+
+    return tracker;
+}
+inline Node* LinkedList::midNode(Node* start, Node* end){
+    if(head==NULL)
+        throw "Empty List";
+    Node *tracker = new Node();
+    Node *trackerFast = new Node();
+    tracker=trackerFast=start;
+    while(trackerFast->next!=end &&trackerFast!=end){
+        tracker=tracker->next;
+        trackerFast=trackerFast->next->next;
+    }
+    // cout<<"head : "<<start->data<<endl;
+    // cout<<"end : "<<end->data<<endl;
+    // cout<<"mid : "<<tracker->data<<endl;
+    
+    return tracker;
+}
+
+
+inline Node* LinkedList::Head(){
+    if(head==NULL)
+        throw "EMPTY LIST";
+    return head;
+}
+
+inline Node* LinkedList::Tail(){
+    if(head==NULL)
+        throw "EMPTY LIST";
+    Node *tracker = new Node();
+    tracker=head;
+    while(tracker->next!=NULL)tracker=tracker->next;
+    return tracker;
+}
+
+inline void LinkedList::mergeSort(){
+    if(head==NULL)
+        return;
+    if(Head()==Tail()){
+        return;
+    }
+    addNodeHead(10);
+    LinkedList *nl = new LinkedList();
+    nl = mergeSort(Head(),Tail());
+    head=NULL;
+    concatenate(nl);
+    delete nl;
+
+}
+
+inline LinkedList* LinkedList::mergeSort(Node* headNode, Node* tailNode){
+    if(headNode == tailNode||headNode->next == tailNode){
+        LinkedList* newList = new LinkedList();
+        newList->addNodeHead(headNode->data);
+       
+        return newList;
+    }
+    else{
+        
+        LinkedList *fsh = new LinkedList();
+        LinkedList *ssh = new LinkedList();
+        LinkedList *nl = new LinkedList();
+        Node* middle = new Node();
+        middle = midNode(headNode,tailNode);
+        fsh = mergeSort(headNode,middle);
+        
+        //cout<<"HEAD : "<<headNode->data<<endl;
+        //cout<<"MID : "<<middle->data<<endl;
+        //cout<<"TAIL : "<<tailNode->data<<endl;
+
+        fsh = mergeSort(headNode,middle);
+        ssh = mergeSort(middle,tailNode);
+        nl=merge(fsh,ssh);
+        delete fsh;
+        delete ssh;
+        return nl;
+
+    }
+    return NULL;
+}
+inline LinkedList* LinkedList::merge(LinkedList* fsh, LinkedList* ssh){
+    Node *one = fsh->Head();
+    Node *two = ssh->Head();
+    LinkedList *ml = new LinkedList();
+    while (one != NULL && two != NULL) {
+        if (one->data < two->data) {
+            ml->addNodeHead(one->data);
+            one = one->next;
+        }else {
+            ml->addNodeHead(two->data);
+            two = two->next;
+        }
+    }
+
+      while (one != NULL) {
+        ml->addNodeHead(one->data);
+        one = one->next;
+      }
+
+      while (two != NULL) {
+        ml->addNodeHead(two->data);
+        two = two->next;
+      }
+
+    return ml;
 }
 
 #endif
