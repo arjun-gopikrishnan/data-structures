@@ -34,6 +34,7 @@ class LinkedList{
         int search(int);
         void concatenate(LinkedList*);
         void mergeSort();
+        void oddeven();
         Node* midNode();
         Node* midNode(Node*, Node *);
 
@@ -389,6 +390,36 @@ inline LinkedList* LinkedList::merge(LinkedList* fsh, LinkedList* ssh){
       }
 
     return ml;
+}
+
+inline void LinkedList::oddeven(){
+    if(head==NULL)
+        return;
+    LinkedList* l1 = new LinkedList();
+    LinkedList* l2 = new LinkedList();
+    Node* tracker = new Node;
+    for(tracker=head;tracker!=NULL;tracker=tracker->next){
+        if(tracker->data%2==0)
+            l1->addNodeHead(tracker->data);
+        else
+            l2->addNodeHead(tracker->data);
+    }
+    
+    if(l2->size()==0 && l1->size()==0){
+        return;
+    }else if(l1->size()==0 && l2->size()!=0){
+        head = l2->head;
+    }else if(l1->size()!=0 && l2->size()==0){
+        head = l1->head;
+    }else{
+        l2->Tail()->next = l1->head;
+        head=l2->head;
+    }
+    
+    
+    delete tracker;
+    delete l1;
+    delete l2;
 }
 
 #endif

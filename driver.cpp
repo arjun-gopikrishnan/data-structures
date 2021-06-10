@@ -7,21 +7,10 @@ using namespace std;
 int main(){
     LinkedList* list = new LinkedList();
 
-    list->addNodeHead(1);
-    list->addNodeHead(5);
-    list->addNodeHead(2);
-    list->addNodeHead(-22);
-    list->addNodeHead(7);
-    list->addNodeHead(3);
-    list->addNodeHead(6);
-    list->addNodeHead(8);
-    list->addNodeHead(-5);
-
+    for(int i=0;i<10;i++){
+        list->addNodeHead((i));
+    }
+    list->oddeven();
     list->display();
-    cout<<endl;
-    list->mergeSort();    
-    cout<<endl;    
-    list->display();
-
 
 }
