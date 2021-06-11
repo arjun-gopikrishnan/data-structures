@@ -1,16 +1,25 @@
 #include<iostream>
-#include"linkedList.h"
-#include"doubleLinkList.h"
-#include"circularLinkedList.h"
-#include"Node.h"
+#include<string>
+#include"stack.h"
 using namespace std;
 int main(){
-    LinkedList* list = new LinkedList();
-
-    for(int i=0;i<10;i++){
-        list->addNodeHead((i));
+    Stack *newstack = new Stack();
+    string input="((a+b)+(c+d)))";
+    for(char s:input){
+        if(s=='(')
+            newstack->push(s);
+        else if(s==')'){
+            try{
+                newstack->pop();
+            }
+            catch(const char* message){
+                continue;
+            }
+        }
+            
+        
     }
-    list->oddeven();
-    list->display();
+
+    newstack->display();
 
 }

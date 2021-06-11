@@ -16,7 +16,7 @@ class LinkedList{
         LinkedList() {
         head = NULL;
         }
-        ~LinkedList() {}
+        ~LinkedList() {};
         LinkedList* merge(LinkedList*,LinkedList*);
         void addNodeHead(int);
         bool insertAt(int,int);
