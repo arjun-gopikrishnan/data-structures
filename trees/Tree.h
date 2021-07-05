@@ -1,5 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
+#include <initializer_list>
+#include<iostream>
 #include<iostream>
 
 template <typename DataType>
@@ -37,5 +39,11 @@ class Tree{
             delete root;
         }
 };
+
+template <typename DataType> Tree<DataType>::Tree(std::initializer_list<DataType> list){
+    for(DataType d:list){
+        std::cout<<d<<" ";
+    }
+}
 
 #endif
