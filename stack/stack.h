@@ -5,9 +5,6 @@
 #include<string>
 using namespace std;
 
-int isOperand(char);
-int precedence(char);
-
 class Stack{
     private:
         Node* top;

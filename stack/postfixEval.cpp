@@ -45,5 +45,6 @@ int Eval(char *postfix){
             }st->push(r);
         }
     }
+    cout<<"\nSize is "<<sizeof(*st)<<endl;
     return st->pop();
 }
