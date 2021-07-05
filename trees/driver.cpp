@@ -1,5 +1,5 @@
 #include<iostream>
-#include"./intbtr.h"
+#include"./Tree.h"
 
 using namespace std;
 
