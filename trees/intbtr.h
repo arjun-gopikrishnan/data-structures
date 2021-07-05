@@ -1,39 +1,41 @@
 #ifndef ITREENODE_H
 #define ITREENODE_H
+#include<iostream>
 
-class IntTreeNode{
+template <typename DataType>
+class TreeNode{
     public:
-    int data;
-    IntTreeNode *rchild;
-    IntTreeNode *lchild;
-    IntTreeNode(){
+    DataType data;
+    TreeNode *rchild;
+    TreeNode *lchild;
+    TreeNode(){
         lchild=nullptr;
         rchild=nullptr;
     }
 
-    IntTreeNode(int a, IntTreeNode *left = nullptr,IntTreeNode *right = nullptr){
-        data=a;
+    TreeNode(DataType d, TreeNode *left = nullptr,TreeNode *right = nullptr){
+        data=d;
         lchild=left;
         rchild=right;
     }
 
-    ~IntTreeNode(){
+    ~TreeNode(){
         delete rchild;
         delete lchild;
     }
 };
-
-class IBtree{
+template <typename DataType>
+class Tree{
     private:
-        IntTreeNode *root;
+        TreeNode<DataType> *root;
     public:
-        IBtree(){
+        Tree(){
             root=nullptr;
         }
-        ~IBtree(){
+        Tree(std::initializer_list <DataType>);
+        ~Tree(){
             delete root;
         }
-        
 };
 
 #endif

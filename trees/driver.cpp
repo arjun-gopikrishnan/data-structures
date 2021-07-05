@@ -2,14 +2,9 @@
 #include"./intbtr.h"
 
 using namespace std;
-void fuck(initializer_list <int> inputs){
-    for(int i:inputs){
-        cout<<i<<" ";
-    }
-}
+
 int main(){
-    IBtree *tree;
+    Tree <int> *tree =  new Tree<int>;
     cout<<"Driver is functional"<<endl;
    
-    fuck({1,2,3,4,5});
 }
