@@ -1,11 +1,16 @@
 #include<iostream>
-#include"intqueue.h"
+#include"./Queue.h"
 
 int main(){
-    intQueue *q = new intQueue();
-    for(int i=0;i<5;i++){
-        q->enqueue(i+1);
+    try{
+        Queue<char> *q = new Queue<char>();
+        for(char i='a';i<'i';i++){
+            q->enqueue(i);
+        }
+        
+        q->display();
+        delete q;
+    }catch(const char *message){
+        cout<<message<<endl;
     }
-    q->dequeue();
-    delete q;
 }
