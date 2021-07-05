@@ -2,7 +2,6 @@
 #define TREE_H
 #include <initializer_list>
 #include<iostream>
-#include<iostream>
 
 template <typename DataType>
 class TreeNode{
