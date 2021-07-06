@@ -40,8 +40,29 @@ class Tree{
         void displayPostOrder(){
             postOrder(root);
         }
+        void levelOrder();
 
 };
+
+template <typename DataType>
+void Tree<DataType>::levelOrder(){
+    queue<node<DataType>*>q;
+    q.push(root);
+    node<DataType> *temp=q.front();
+    cout<<temp->data<<" ";
+    while(!q.empty()){
+        temp = q.front();
+        q.pop();
+        if(temp->left){
+            cout<<temp->left->data<<" ";
+            q.push(temp->left);
+        }
+        if(temp->right){
+            cout<<temp->right->data<<" ";
+            q.push(temp->right);
+        };     
+    }  
+}
 
 template <typename DataType>
 void Tree<DataType>::insert(DataType data) {
