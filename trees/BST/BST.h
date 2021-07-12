@@ -2,8 +2,10 @@
 #define BST_H
 #include<iostream>
 #include<queue>
+#include <stack>
 #include<string.h>
 #include<string>
+
 using namespace std;
 
 template <typename DataType>
@@ -95,6 +97,7 @@ class BST{
         }
         int height();
         void remove(DataType);
+        void genPreOrder(DataType[],int);
 };
 
 template <typename DataType>
@@ -186,6 +189,44 @@ int BST<DataType>::height(node *Node) {
         
     
     return 0;
+}
+
+template <typename DataType>
+void BST<DataType>::genPreOrder(DataType *tree,int size){
+    int i = 0;
+    root = new node();
+    root->data = tree[i++];
+    root->left = nullptr;
+    root->right = nullptr;
+ 
+    // Iterative steps
+    node* t;
+    node* p = root;
+    stack<node*> stk;
+ 
+    while (i<size){
+        if (tree[i]<p->data){
+            t = new node();
+            t->data = tree[i++];
+            t->left = nullptr;
+            t->right = nullptr;
+            p->left = t;
+            stk.push(p);
+            p = t;
+        } else {
+            if (tree[i] > p->data && tree[i] < stk.empty() ? 32767 : stk.top()->data){
+                t = new node();
+                t->data = tree[i++];
+                t->left = nullptr;
+                t->right = nullptr;
+                p->right = t;
+                p = t;
+            } else {
+                p = stk.top();
+                stk.pop();
+            }
+        }
+    }
 }
 
 #endif
