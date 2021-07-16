@@ -199,7 +199,7 @@ void BST<DataType>::genPreOrder(DataType *tree,int size){
     root->left = nullptr;
     root->right = nullptr;
  
-    // Iterative steps
+    
     node* t;
     node* p = root;
     stack<node*> stk;

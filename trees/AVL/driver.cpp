@@ -39,7 +39,11 @@ int main() {
     trl.root = trl.rInsert(trl.root, 30);
  
     trl.Inorder();
+
+    trl.remove(trl.getRoot(),50);
+    cout<<endl;
+    trl.Inorder();
     cout << endl;
- 
+    
     return 0;
 }

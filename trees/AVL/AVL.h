@@ -17,9 +17,12 @@ private:
             Node* rchild;
             int height;
     };
+        Node* InPre(Node*);
+        Node* InSucc(Node* p);
 public:
+
     Node* root;
- 
+    Node* remove(Node*,DataType); 
     AVL(){ root = nullptr; }
  
     int NodeHeight(Node* p);
@@ -28,13 +31,29 @@ public:
     Node* RRRotation(Node* p);
     Node* LRRotation(Node* p);
     Node* RLRotation(Node* p);
- 
     Node* rInsert(Node* p, DataType key);
- 
     void Inorder(Node* p);
     void Inorder(){ Inorder(root); }
     Node* getRoot(){ return root; }
+    void remove(DataType);
 };
+
+template <typename DataType>
+typename AVL<DataType>::Node* AVL<DataType>::InPre(Node *p) {
+    while(p && p->rchild!=nullptr){
+        p=p->rchild;
+    }
+    return p;
+}
+template <typename DataType>
+typename AVL<DataType>::Node* AVL<DataType>::InSucc(Node *p) {
+    while(p && p->lchild!=nullptr){
+        p=p->lchild;
+    }
+    return p;
+}
+
+
 template <typename DataType> 
 int AVL<DataType>::NodeHeight(Node *p) {
     int hl;
@@ -98,7 +117,7 @@ typename AVL<DataType>::Node* AVL<DataType>::LRRotation(Node *p) {
     pl->rchild=plr->lchild;
     p->lchild=plr->rchild;
 
-    plr->lchild=pl;
+    plr->lchild  =pl;
     plr->rchild=p;
 
     pl->height=NodeHeight(pl);
@@ -175,5 +194,55 @@ void AVL<DataType>::Inorder(Node *p) {
         Inorder(p->rchild);
     }
 }
+
+template <typename DataType>
+typename AVL<DataType>::Node* AVL<DataType>::remove(Node *p, DataType key) {
+if (p == nullptr){
+        return nullptr;
+    }
  
+    if (p->lchild == nullptr && p->rchild == nullptr){
+        if (p == root){
+            root = nullptr;
+        }
+        delete p;
+        return nullptr;
+    }
+ 
+    if (key < p->data){
+        p->lchild = remove(p->lchild, key);
+    } else if (key > p->data){
+        p->rchild = remove(p->rchild, key);
+    } else {
+        Node* q;
+        if (NodeHeight(p->lchild) > NodeHeight(p->rchild)){
+            q = InPre(p->lchild);
+            p->data = q->data;
+            p->lchild = remove(p->lchild, q->data);
+        } else {
+            q = InSucc(p->rchild);
+            p->data = q->data;
+            p->rchild = remove(p->rchild, q->data);
+        }
+    }
+ 
+    p->height = NodeHeight(p);
+ 
+    if (BalanceFactor(p) == 2 && BalanceFactor(p->lchild) == 1) {  // L1 Rotation
+        return LLRotation(p);
+    } else if (BalanceFactor(p) == 2 && BalanceFactor(p->lchild) == -1){  // L-1 Rotation
+        return LRRotation(p);
+    } else if (BalanceFactor(p) == -2 && BalanceFactor(p->rchild) == -1){  // R-1 Rotation
+        return RRRotation(p);
+    } else if (BalanceFactor(p) == -2 && BalanceFactor(p->rchild) == 1){  // R1 Rotation
+        return RLRotation(p);
+    } else if (BalanceFactor(p) == 2 && BalanceFactor(p->lchild) == 0){  // L0 Rotation
+        return LLRotation(p);
+    } else if (BalanceFactor(p) == -2 && BalanceFactor(p->rchild) == 0){  // R0 Rotation
+        return RRRotation(p);
+    }
+ 
+    return p;
+}
+
 #endif
