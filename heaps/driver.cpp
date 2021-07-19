@@ -5,16 +5,10 @@
 using namespace std;
 
 int main(){
-    Heap a;
-    int arr[] = {10,20,30,25,5,40,35};
-    for(int i:arr)
-        a.insert(i);
-    
-    a.heapSort();
+    int arr[] = {30,25,20,10,5,40,35,36,89,91,54,32,34,43};
+    int size=sizeof(arr)/sizeof(int);
+    MaxHeap a(size);
+    a.heapify(arr,size);
     a.display();
-    // for(int i=0;i<3;i++){
-    //     a.remove();
-    //     cout<<endl;
-    //     a.display();
-    // }
+
 }
