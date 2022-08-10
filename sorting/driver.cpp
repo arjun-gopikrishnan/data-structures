@@ -4,6 +4,8 @@
 #include"./bubbleSort.h"
 #include"./insertionSort.h"
 #include"./quickSort.h"
+#include"./mergeSort.h"
+
 #include"./utils.h"
 
 using namespace std;
