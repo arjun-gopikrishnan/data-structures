@@ -3,19 +3,20 @@
 #include"./selSort.h"
 #include"./bubbleSort.h"
 #include"./insertionSort.h"
+#include"./quickSort.h"
 #include"./utils.h"
 
 using namespace std;
 int main(){
-    int arr[] = {INT_MIN,9,8,7,6,5,4,3,2,1};
+    int arr[] = {10,9,8,7,6,5,4,3,2,1};
     int n = sizeof(arr)/sizeof(arr[0]);
     
-    printArray(arr,n,1);
+    printArray(arr,n);
 
-    insertionSort(arr,n);
+    quickSort(arr,0,n);
     cout<<endl;
     
-    printArray(arr,n,1);
+    printArray(arr,n);
 
 
 }
