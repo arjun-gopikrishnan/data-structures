@@ -1,6 +1,8 @@
 #ifndef BUBBLESORT_H
 #define BUBBLESORT_H
 #include<iostream>
+#include"./swap.h"
+
 void bubbleSort(int arr[],int n) { 
     
     int min;

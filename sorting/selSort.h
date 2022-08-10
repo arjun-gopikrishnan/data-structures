@@ -4,7 +4,7 @@
 #include"./swap.h"
 void selSort(int arr[],int n) { 
     
-    int min,temp;
+    int min;
     for(int i=0;i<n;i++){
         min = i;
         for(int j=i;j<n;j++){
@@ -12,9 +12,7 @@ void selSort(int arr[],int n) {
                 min = j;
             }
 
-            temp = arr[i];
-            arr[i] = arr[min];
-            arr[min] = temp;
+            swap(&arr[i],&arr[min]);
         }
     }
 }
