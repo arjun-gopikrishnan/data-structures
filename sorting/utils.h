@@ -10,8 +10,8 @@ void swap(int *x,int *y) {
 
 }
 
-void printArray(int arr[], int size){
-    for(int i = 0; i < size; i++)
+void printArray(int arr[], int size,int start=0){
+    for(int i = start; i < size; i++)
         std::cout << arr[i] << " ";
 }
   
