@@ -1,7 +1,7 @@
 #ifndef SELSORT_H
 #define SELSORT_H
 #include<iostream>
-#include"./swap.h"
+#include"./utils.h"
 void selSort(int arr[],int n) { 
     
     int min;

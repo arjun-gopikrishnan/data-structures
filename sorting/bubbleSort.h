@@ -1,19 +1,15 @@
 #ifndef BUBBLESORT_H
 #define BUBBLESORT_H
 #include<iostream>
-#include"./swap.h"
+#include"./utils.h"
 
 void bubbleSort(int arr[],int n) { 
     
-    int min;
     for(int i=0;i<n;i++){
-        min = i;
-        for(int j=i;j<n;j++){
-            if(arr[min]>arr[j]){
-                min = j;
+        for(int j=0;j<n-i-1;j++){
+            if(arr[j]>arr[j+1]){
+                swap(&arr[j],&arr[j+1]);
             }
-
-            swap(&arr[i],&arr[min]);
         }
     }
 }
