@@ -5,20 +5,18 @@
 #include"./insertionSort.h"
 #include"./quickSort.h"
 #include"./mergeSort.h"
+#include"./countSort.h"
 
 #include"./utils.h"
 
 using namespace std;
 int main(){
-    int arr[] = {10,9,8,7,6,5,4,3,2,1};
+    int arr[] = {1,4,2,18,6,14,4,4,23,17,91,112,34};
     int n = sizeof(arr)/sizeof(arr[0]);
     
     printArray(arr,n);
-
-    quickSort(arr,0,n);
     cout<<endl;
-    
-    printArray(arr,n);
-
-
+    countSort(arr,n);
 }
+
+
