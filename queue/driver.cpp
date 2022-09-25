@@ -1,6 +1,5 @@
 #include<iostream>
 #include"./Queue.h"
-
 int main(){
     try{
         Queue<char> *q = new Queue<char>();
@@ -14,3 +13,4 @@ int main(){
         cout<<message<<endl;
     }
 }
+

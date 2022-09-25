@@ -1,6 +1,5 @@
 #ifndef Queue_H
 #define Queue_H
-#include "../Node.h"
 #include "./QNode.h"
 #include<iostream>
 #include<string>
