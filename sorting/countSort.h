@@ -1,5 +1,5 @@
-#ifndef COUNTORT_H
-#define COUNTORT_H
+#ifndef COUNTSORT_H
+#define COUNTSORT_H
 #include<iostream>
 #include"./utils.h"
 
@@ -24,7 +24,8 @@ void countSort(int arr[],int size,bool logs = false){
         freq[arr[i]]--;
     }
     
-    printArray(result,size);
+    for(int i=0;i<size;i++)arr[i]=result[i];
+
 
 }
 
